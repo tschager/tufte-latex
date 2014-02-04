@@ -25,7 +25,6 @@ The sample book can be compiled with the following:
  pdflatex sample-book
  pdflatex sample-book
 
-
 == Troubleshooting
 
 If you encounter errors of the form,
@@ -87,7 +86,7 @@ high quality patches, and you'll find yourself a developer on this project.
 
 == License
 
-Copyright 2007-2009 Bil Kleb, Bill Wood, and Kevin Godby
+Copyright 2007-2010 by Kevin Godby, Bil Kleb, and Bill Wood.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

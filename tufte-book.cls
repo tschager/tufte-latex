@@ -1,6 +1,6 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 
-\ProvidesClass{tufte-book}[2009/12/11 v3.5.0 Tufte-book class]
+\ProvidesClass{tufte-book}[2010/03/28 v3.5.1 Tufte-book class]
 
 %%
 % Declare we're tufte-book
@@ -70,10 +70,10 @@
 %%
 % If there is a `tufte-book-local.sty' file, load it.
 
-\IfFileExists{tufte-book-local.tex}
-  {\input{tufte-book-local}
-   \TufteInfoNL{Loading tufte-book-local.tex}}
-  {}
+\IfFileExists{tufte-book-local.tex}{%
+  \@tufte@info@noline{Loading tufte-book-local.tex}%
+  \input{tufte-book-local}%
+}{}
 
 %%
 % End of file
