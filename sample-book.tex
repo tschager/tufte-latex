@@ -1,4 +1,4 @@
-\documentclass{tufte-book}
+\documentclass[nobib]{tufte-book}
 
 \hypersetup{colorlinks}% uncomment this line if you prefer colored hyperlinks (e.g., for onscreen viewing)
 
@@ -144,6 +144,17 @@
 % Generates the index
 \usepackage{makeidx}
 \makeindex
+
+
+
+\usepackage{hyphenat}
+\usepackage[backend = biber, style = numeric]{biblatex}
+\addbibresource{sample-handout.bib} % ANDY
+
+
+\renewcommand{\cite}[2][0pt]{
+\sidenote[][#1]{\fullcite{#2}}
+}
 
 \begin{document}
 
@@ -1168,9 +1179,9 @@ classes rely upon.  Packages marked with an asterisk are optional.
 
 \backmatter
 
-\bibliography{sample-handout}
-\bibliographystyle{plainnat}
-
+%\bibliography{sample-handout}
+%\bibliographystyle{plainnat}
+\printbibliography
 
 \printindex
 

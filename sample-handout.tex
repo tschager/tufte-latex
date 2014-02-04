@@ -1,4 +1,4 @@
-\documentclass{tufte-handout}
+\documentclass[nobib]{tufte-handout}
 
 %\geometry{showframe}% for debugging purposes -- displays the margins
 
@@ -29,6 +29,16 @@
 \usepackage{multicol}
 
 % Provides paragraphs of dummy text
+
+\usepackage{hyphenat}
+\usepackage[backend = biber, style = numeric]{biblatex}
+\addbibresource{sample-handout.bib} % ANDY
+
+\renewcommand{\cite}[2][0pt]{
+\sidenote[][#1]{\fullcite{#2}}
+}
+
+
 \usepackage{lipsum}
 
 % These commands are used to pretty-print LaTeX commands
@@ -292,9 +302,9 @@ The website for the Tufte-\LaTeX\ packages is located at
 \url{http://code.google.com/p/tufte-latex/}.  On our website, you'll find
 links to our \smallcaps{svn} repository, mailing lists, bug tracker, and documentation.
 
-\bibliography{sample-handout}
-\bibliographystyle{plainnat}
+%\bibliography{sample-handout}
+%\bibliographystyle{plainnat} ANDY
 
-
+\printbibliography
 
 \end{document}
