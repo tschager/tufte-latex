@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# This hook executes makeNotes.sh (compile tex) if notes.tex is changed and aborts the commit if there is a latex compile error.
+git diff --cached --name-status | while read st file; do
+        # skip deleted files
+        if [ "$st" == 'D' ]; then continue; fi
+        # check for notes.tex file 
+        if [ "$file" = "notes/notes.tex" ]; then
+                echo "notes.tex commited"
+                cd notes; bash makeNotes.sh; cd ..
+                git add notes/notes.pdf
+                exit $?
+        fi
+done
+
