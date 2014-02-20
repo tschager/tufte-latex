@@ -187,13 +187,15 @@
      \ifciteseen%
        {\ifnameundef{labelname}%
           {\printfield[citetitle]{labeltitle}}%
-          {\printnames{labelname}}}%
+          {\printnames{labelname}}
+          \addspace\bibopenbracket}%
        {\usedriver%
           {\DeclareNameAlias{sortname}{default}%
            \clearfield{pages}%
            \clearfield{pagetotal}}%
-          {\thefield{entrytype}}}%
-     \addspace\bibopenbracket}%
+          {\thefield{entrytype}}
+          \addspace\bibopenbracket\hspace{-.6ex}}%
+     }%
   \ifnumequal{\value{citecount}}{1}%
     {\usebibmacro{prenote}}%
     {}%
