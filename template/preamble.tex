@@ -156,11 +156,8 @@
 \renewcommand{\nomname}{List of Notations}
 \makenomenclature
 
-%% Algorithms/Pseudo-code
-\usepackage{algorithm}
-\usepackage{algpseudocode} 
-\renewcommand{\algorithmicrequire}{\textbf{Input:}}
-\renewcommand{\algorithmicensure}{\textbf{Output:}}
+% Algorithm Pseudocode
+\usepackage{algpseudocode}
 
 % tikz
 \usepackage{tikz}
@@ -169,51 +166,6 @@
 
 % bibliography using biber
 \usepackage{hyphenat}
-\usepackage[backend = biber, style = numeric,citetracker=true,autocite=footnote]{biblatex}
-
-
-%\renewcommand{\cite}[2][0pt]{
-%\sidenote[][#1]{\fullcite{#2}}
-%}
-
-%% Full cite in sidenotes only on first occurence
-\makeatletter
-
-% If not seen, avoid compact lists and print full citation
-\renewbibmacro*{textcite}{%
-  \ifciteseen
-    {}
-    {\clearfield{namehash}}%
-  \iffieldequals{namehash}{\cbx@lasthash}%
-    {\multicitedelim}%
-    {\cbx@tempa%
-     \ifciteseen%
-       {\ifnameundef{labelname}%
-          {\printfield[citetitle]{labeltitle}}%
-          {\printnames{labelname}}
-          \addspace\bibopenbracket}%
-       {\usedriver%
-          {\DeclareNameAlias{sortname}{default}%
-           \clearfield{pages}%
-           \clearfield{pagetotal}}%
-          {\thefield{entrytype}}
-          \addspace\bibopenbracket\hspace{-.6ex}}%
-     }%
-  \ifnumequal{\value{citecount}}{1}%
-    {\usebibmacro{prenote}}%
-    {}%
-  \usebibmacro{cite}%
-  \savefield{namehash}{\cbx@lasthash}%
-  \gdef\cbx@tempa{\bibclosebracket\multicitedelim}}%
-
-% Make \smartcite like \textcite
-\DeclareCiteCommand{\smartcite}[\iffootnote\mkbibbrackets\mkbibfootnote]%
-  {\let\cbx@tempa=\empty%
-   \undef\cbx@lasthash}%
-  {\usebibmacro{citeindex}%
-   \usebibmacro{textcite}}%
-  {}%
-  {\usebibmacro{postnote}%
-   \bibclosebracket}%
-
-\makeatother
+\usepackage[backend = biber, style = numeric,citetracker=true,autocite=footnote,bibencoding=utf8]{biblatex}
+\usepackage{xpatch}
+\xpatchbibmacro{textcite}{\addspace}{\addnbspace}{}{}
