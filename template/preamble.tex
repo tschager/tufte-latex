@@ -7,7 +7,8 @@
 %\IfFileExists{bergamo.sty}{\usepackage[osf]{bergamo}}{}% Bembo
 %\IfFileExists{chantill.sty}{\usepackage{chantill}}{}% Gill Sans
 
-%\usepackage{microtype}
+\usepackage{microtype}
+\RequirePackage[l2tabu, orthodox]{nag}
 
 %%
 % For nicely typeset tabular material
@@ -156,8 +157,11 @@
 \renewcommand{\nomname}{List of Notations}
 \makenomenclature
 
-% Algorithm Pseudocode
-\usepackage{algpseudocode}
+%% Algorithms/Pseudo-code
+\usepackage{algorithm}
+\usepackage{algpseudocode} 
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 % tikz
 \usepackage{tikz}
