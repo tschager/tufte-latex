@@ -170,6 +170,45 @@
 
 % bibliography using biber
 \usepackage{hyphenat}
-\usepackage[backend = biber, style = numeric,citetracker=true,autocite=footnote,bibencoding=utf8]{biblatex}
-\usepackage{xpatch}
-\xpatchbibmacro{textcite}{\addspace}{\addnbspace}{}{}
+\usepackage[style=numeric,citetracker=true,autocite=footnote,bibencoding=utf8,backend = biber]{biblatex}
+\makeatletter
+
+% If not seen, avoid compact lists and print full citation
+\renewbibmacro*{textcite}{%
+  \ifciteseen
+    {}
+    {\clearfield{namehash}}%
+  \iffieldequals{namehash}{\cbx@lasthash}
+    {\multicitedelim}
+    {\cbx@tempa
+     \ifciteseen
+       {\ifnameundef{labelname}
+          {\printfield[citetitle]{labeltitle}}
+          {\printnames{labelname}}}
+       {\usedriver
+          {\DeclareNameAlias{sortname}{default}%
+           \clearfield{pages}%
+           \clearfield{pagetotal}}
+          {\thefield{entrytype}}}%
+     \addspace\bibopenbracket}%
+  \ifnumequal{\value{citecount}}{1}
+    {\usebibmacro{prenote}}
+    {}%
+  \usebibmacro{cite}%
+  \savefield{namehash}{\cbx@lasthash}%
+  \gdef\cbx@tempa{\bibclosebracket\multicitedelim}}
+
+% Make \smartcite like \textcite
+\DeclareCiteCommand{\smartcite}[\iffootnote\mkbibbrackets\mkbibfootnote]
+  {\let\cbx@tempa=\empty
+   \undef\cbx@lasthash}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{textcite}}
+  {}
+  {\usebibmacro{postnote}%
+   \bibclosebracket}
+
+\makeatother
+
+% cleverref
+\usepackage{cleveref}
