@@ -5,7 +5,7 @@ git diff --cached --name-status | while read st file; do
         # skip deleted files
         if [ "$st" == 'D' ]; then continue; fi
         # check for notes.tex file 
-        if [ "$file" = "notes/notes.tex" ]; then
+    if [[ $file = "notes/notes.tex" ]] || [[ $file =~ notes/content/.*\.tex$ ]]; then
                 echo "notes.tex commited"
                 cd notes; bash makeNotes.sh; cd ..
                 git add notes/notes.pdf
